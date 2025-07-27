@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Malcriadinha</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    video.video-fundo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+    }
+
+    .conteudo {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding-top: 60px;
+    }
+
+    .botao-acesso {
+      cursor: pointer;
+    }
+
+    .iframe-container {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 20;
+    }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: #0f0;
+      background-color: transparent;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Vídeo de fundo -->
+  <video autoplay muted loop class="video-fundo">
+    <source src="The Matrix Raining Green Code Backdrop for OBS - Teams, Zoom calls in 4k - link to 45mins ver below.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo HTML5.
+  </video>
+
+  <!-- Música de fundo -->
+  <audio id="musicaFundo" loop>
+    <source src="musica-ambiente.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <!-- Conteúdo inicial -->
+  <div class="conteudo" id="conteudoPrincipal">
+    <h1 class="titulo-principal">MALCRIADO,<br>chegou sua vez.</h1>
+
+    <button class="botao-acesso" onclick="carregar('dados.html')">Acesse - aqui</button>
+    <p class="descricao">Dados e informações pessoais do PEDRO LUCAS CABRAL DOS SANTOS</p>
+
+    <button class="botao-acesso" onclick="carregar('fotos.html')">Fotos</button>
+    <p class="descricao">Fotos dele e da família</p>
+  </div>
+
+  <!-- Área de carregamento das outras páginas -->
+  <iframe id="conteudo" class="iframe-container"></iframe>
+
+  <footer>
+    <p>2025 @ghostware - todos os direitos estão reservados.</p>
+  </footer>
+
+  <script>
+    const audio = document.getElementById('musicaFundo');
+    const iframe = document.getElementById('conteudo');
+    const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+
+    audio.volume = 0.1;
+
+    let iniciado = false;
+    document.addEventListener('click', () => {
+      if (!iniciado) {
+        audio.play().catch(e => console.log('Erro ao tocar música:', e));
+        iniciado = true;
+      }
+    }, { once: true });
+
+    function carregar(pagina) {
+      iframe.src = pagina;
+      iframe.style.display = 'block';
+      conteudoPrincipal.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
